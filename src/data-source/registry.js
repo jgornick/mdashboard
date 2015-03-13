@@ -1,4 +1,7 @@
-class DataSourceRegistry extends Marionette.Object {
+import _ from 'lodash';
+import Marionette from 'backbone.marionette';
+
+export default class DataSourceRegistry extends Marionette.Object {
     initialize() {
         this.dataSources = [];
     }

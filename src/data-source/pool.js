@@ -1,9 +1,14 @@
+import _ from 'lodash';
+import Marionette from 'backbone.marionette';
+
+import DataSourceConnectionFactory from './connection/factory';
+
 /**
  * Class that manages instances of data sources.
  *
  * @extends {Marionette.Object}
  */
-class DataSourcePool extends Marionette.Object {
+export default class DataSourcePool extends Marionette.Object {
     initialize() {
         this.dataSources = [];
         this.dataSourceConnections = [];

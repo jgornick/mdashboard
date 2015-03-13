@@ -1,3 +1,5 @@
+import Marionette from 'backbone.marionette';
+
 /**
  * @typedef {Object} DataSourceMeta
  * @property {String} name
@@ -12,7 +14,7 @@
  * @property {String} type
  */
 
-class DataSource extends Marionette.Object {
+export default class AbstractDataSource extends Marionette.Object {
     /**
      * Return meta data for the data source.
      *

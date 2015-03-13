@@ -1,3 +1,4 @@
+/*
 class JsonDataSource extends HttpDataSource {
     static get meta() {
         return {
@@ -51,3 +52,4 @@ class JsonDataSource extends HttpDataSource {
         return JSON.parse(data);
     }
 }
+*/

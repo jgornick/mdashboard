@@ -27,6 +27,8 @@ chat.name = 'Chat New Messages';
 chat.url = 'http://chat.socket.io/';
 chat.event = 'new message';
 
+/////////////////////////////////////////////////////
+
 registry = new DataSourceRegistry();
 registry.add(CallbackDataSource);
 registry.add(HttpDataSource);
@@ -36,6 +38,7 @@ factory = new DataSourceFactory()
 factory.registry = registry;
 factory.create('http', { ... });
 
+/////////////////////////////////////////////////////
 
 pool = new DataSourcePool();
 

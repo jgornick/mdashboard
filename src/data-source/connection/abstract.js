@@ -1,4 +1,6 @@
-class DataSourceConnection extends Marionette.Object {
+import Marionette from 'backbone.marionette';
+
+export default class AbstractDataSourceConnection extends Marionette.Object {
     /**
      * @public
      * @property {Boolean} isStarted

@@ -1,4 +1,6 @@
-class PollDataSourceConnection {
+import _ from 'lodash';
+
+export default class Connection {
     get pollInterval() {
         return this._pollInterval;
     }
@@ -27,19 +29,5 @@ class PollDataSourceConnection {
         }
 
         _.delay(callback, this.pollInterval);
-    }
-}
-
-class PollDataSource {
-    get pollInterval() {
-        return this.connection.pollInterval;
-    }
-
-    set pollInterval(interval) {
-        this.connection.pollInterval = interval;
-    }
-
-    get isPolling() {
-        return this.connection.isPolling || false;
     }
 }

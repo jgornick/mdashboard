@@ -1,4 +1,6 @@
-class DataSourceFactory extends Marionette.Object {
+import Marionette from 'backbone.marionette';
+
+export default class DataSourceFactory extends Marionette.Object {
     initialize() {
         this.registry = null;
     }

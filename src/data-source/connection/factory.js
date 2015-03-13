@@ -1,4 +1,6 @@
-class DataSourceConnectionFactory extends Marionette.Object {
+import Marionette from 'backbone.marionette';
+
+export default class DataSourceConnectionFactory extends Marionette.Object {
     /**
      * Create a DataSourceConnection instance by the specified DataSource.
      *
