@@ -1,6 +1,6 @@
 import AbstractDataSource from '../abstract';
 
-export default class DataSource extends AbstractDataSource {
+export default class UrlDataSource extends AbstractDataSource {
     /**
      * @public
      * @return {String}

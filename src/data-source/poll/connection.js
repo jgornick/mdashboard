@@ -1,6 +1,7 @@
 import _ from 'lodash';
+import AbstractDataSourceConnection from '../connection/abstract';
 
-export default class Connection {
+export default class PollDataSourceConnection extends AbstractDataSourceConnection {
     get pollInterval() {
         return this._pollInterval;
     }

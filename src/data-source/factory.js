@@ -33,6 +33,10 @@ export default class DataSourceFactory extends Marionette.Object {
             throw new Error('Registry is not available.');
         }
 
+        if (options == null) {
+            options = {};
+        }
+
         var
             DataSource = this.registry.get(key);
 

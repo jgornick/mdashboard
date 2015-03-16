@@ -8,7 +8,7 @@ export default class DataSourceConnectionFactory extends Marionette.Object {
      *
      * @return {DataSourceConnection}
      */
-    create(dataSource) {
+    static create(dataSource) {
         return dataSource.createConnection();
     }
 }

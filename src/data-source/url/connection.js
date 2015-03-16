@@ -1,6 +1,6 @@
 import AbstractDataSourceConnection from '../connection/abstract';
 
-export default class Connection extends AbstractDataSourceConnection {
+export default class UrlDataSourceConnection extends AbstractDataSourceConnection {
     /**
      * @public
      * @return {String}

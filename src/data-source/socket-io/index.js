@@ -1,7 +1,17 @@
 import UrlDataSource from '../url';
 import Connection from './connection';
 
-export default class DataSource extends UrlDataSource {
+export default class SocketIoDataSource extends UrlDataSource {
+    /**
+     * @inheritDoc
+     */
+    static get meta() {
+        return {
+            key: 'socket-io',
+            description: 'Socket.IO'
+        };
+    }
+
     /**
      * @public
      * @return {String}

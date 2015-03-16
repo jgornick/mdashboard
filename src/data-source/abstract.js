@@ -2,7 +2,7 @@ import Marionette from 'backbone.marionette';
 
 /**
  * @typedef {Object} DataSourceMeta
- * @property {String} name
+ * @property {String} key
  * @property {String} description
  */
 
@@ -102,12 +102,13 @@ export default class AbstractDataSource extends Marionette.Object {
         this._connection = connection;
     }
 
-    initialize(options) {
-        this._options = options;
+    constructor(options) {
         this._name = options.name || null;
         this._isStarted = false;
         this._isStopped = true;
         this._connection = null;
+
+        super();
     }
 
     /**

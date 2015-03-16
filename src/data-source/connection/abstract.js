@@ -28,12 +28,16 @@ export default class AbstractDataSourceConnection extends Marionette.Object {
      * @fires DataSourceConnection#start
      */
     start() {
-        this.triggerMethod('beforeStart');
+        if (this._isStarted) {
+            return;
+        }
 
-        this.startConnection();
+        this.triggerMethod('beforeStart');
 
         this._isStarted = true;
         this._isStopped = false;
+
+        this.startConnection();
 
         /**
          * DataSourceConnection start event
@@ -51,12 +55,16 @@ export default class AbstractDataSourceConnection extends Marionette.Object {
      * @fires DataSourceConnection#stop
      */
     stop() {
+        if (this._isStopped) {
+            return;
+        }
+
         this.triggerMethod('beforeStop');
 
-        this.stopConnection();
+        this._isStarted = false;
+        this._isStopped = true;
 
-        this.isStarted = false;
-        this.isStopped = true;
+        this.stopConnection();
 
         /**
          * DataSourceConnection stop event

@@ -8,7 +8,8 @@ module.exports = function(grunt) {
             'backbone.radio',
             'jquery',
             'lodash',
-            'swig'
+            'swig',
+            'request'
         ];
 
     grunt.initConfig({
@@ -51,6 +52,19 @@ module.exports = function(grunt) {
                 }
             },
 
+            dist: {
+                options: {
+                    debug: true,
+                    external: vendors
+                },
+                files: {
+                    'dist/data-source.js': [
+                        'browserify-shims/*.js',
+                        'dist/data-source.es6'
+                    ]
+                }
+            },
+
             prod: {
             }
         },
@@ -59,13 +73,16 @@ module.exports = function(grunt) {
             devjs: {
                 files: [
                     'browserify-shims/*.js',
-                    'src/**/*.js'
+                    'src/**/*.js',
+                    'dist/data-source.es6'
                 ],
-                tasks: ['browserify:dev']
+                tasks: [
+                    'browserify:dist'
+                ]
             }
         }
     });
 
-    grunt.registerTask('default', ['browserify:dev']);
+    grunt.registerTask('default', ['browserify:vendor', 'browserify:dev', 'browserify:dist']);
     grunt.registerTask('dev', ['watch:devjs']);
 };

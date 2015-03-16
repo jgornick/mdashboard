@@ -1,8 +1,26 @@
-import AbstractDataSource from '../abstract';
+import _ from 'lodash';
 import PollDataSource from '../poll';
 import Connection from './connection';
 
-class DataSource extends AbstractDataSource {
+export default class CallbackDataSource extends PollDataSource {
+    /**
+     * @inheritDoc
+     */
+    static get meta() {
+        return {
+            key: 'callback',
+            name: 'Callback',
+            description: 'Calls the specified callback.'
+        };
+    }
+
+    /**
+     * @inheritDoc
+     */
+    get connectionId() {
+        return +new Date();
+    }
+
     get callback() {
         return this._callback;
     }
@@ -15,12 +33,9 @@ class DataSource extends AbstractDataSource {
         var
             connection = new Connection();
 
+        connection.pollInterval = this.pollInterval;
         connection.callback = this.callback;
 
         return connection;
     }
 }
-
-Object.assign(DataSource.prototype, PollDataSource.prototype);
-
-export default DataSource;

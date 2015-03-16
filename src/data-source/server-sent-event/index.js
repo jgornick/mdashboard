@@ -1,7 +1,7 @@
 import UrlDataSource from '../url';
 import Connection from './connection';
 
-export default class DataSource extends UrlDataSource {
+export default class ServerSentEventDataSource extends UrlDataSource {
     /**
      * @public
      * @return {String}

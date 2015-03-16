@@ -1,8 +1,19 @@
-import AbstractDataSource from '../abstract';
+import _ from 'lodash';
 import PollDataSource from '../poll';
 import Connection from './connection';
 
-class DataSource extends AbstractDataSource {
+export default class HttpDataSource extends PollDataSource {
+    /**
+     * @inheritDoc
+     */
+    static get meta() {
+        return {
+            key: 'http',
+            name: 'HTTP',
+            description: 'Requests data from an HTTP resource.'
+        };
+    }
+
     get method() {
         return this._method;
     }
@@ -11,14 +22,18 @@ class DataSource extends AbstractDataSource {
         this._method = method;
     }
 
-    getConnectionId() {
-        return this.key;
+    /**
+     * @inheritDoc
+     */
+    get connectionId() {
+        return 'http' + this.url;
     }
 
     createConnection() {
         var
             connection = new Connection();
 
+        connection.pollInterval = this.pollInterval;
         connection.method = this.method;
         connection.url = this.url;
         connection.query = this.query;
@@ -30,7 +45,3 @@ class DataSource extends AbstractDataSource {
         return connection;
     }
 }
-
-Object.assign(DataSource.prototype, PollDataSource.prototype);
-
-export default DataSource;

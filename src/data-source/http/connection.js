@@ -1,8 +1,7 @@
-import fetch from 'whatwg-fetch';
-import AbstractDataSourceConnection from '../connection/abstract';
+import _ from 'lodash';
 import PollDataSourceConnection from '../poll/connection';
 
-class Connection extends AbstractDataSourceConnection {
+export default class HttpDataSourceConnection extends PollDataSourceConnection {
     /**
      * @public
      * @return {String}
@@ -21,15 +20,18 @@ class Connection extends AbstractDataSourceConnection {
         }
 
         fetch(this.url, {})
-            .then(function(response) {
+            .then((response) => {
                 if (this.isStopped) {
                     return;
                 }
 
-                this.trigger('data', response.body);
-                this.delay(this.request);
+                return response.text();
             })
-            .catch(function(error) {
+            .then((data) => {
+                this.trigger('data', data);
+                this.delay(_.bind(this.request, this));
+            })
+            .catch((error) => {
                 this.trigger('error', error);
                 this.stop();
             });
@@ -44,7 +46,3 @@ class Connection extends AbstractDataSourceConnection {
         this.stopPolling();
     }
 }
-
-Object.assign(Connection.prototype, PollDataSourceConnection.prototype);
-
-export default Connection;

@@ -1,7 +1,7 @@
-import AbstractDataSourceConnection from '../connection/abstract';
+import _ from 'lodash';
 import PollDataSourceConnection from '../poll/connection';
 
-class Connection extends AbstractDataSourceConnection {
+class CallbackDataSourceConnection extends PollDataSourceConnection {
     get callback() {
         return this._callback;
     }
@@ -15,7 +15,7 @@ class Connection extends AbstractDataSourceConnection {
             return;
         }
 
-        this.callback(function(error, data) {
+        this.callback((error, data) => {
             if (this.isStopped) {
                 return;
             }
@@ -28,7 +28,7 @@ class Connection extends AbstractDataSourceConnection {
 
             this.trigger('data', data);
 
-            this.delay(this.request);
+            this.delay(_.bind(this.request, this));
         });
     }
 
@@ -42,6 +42,4 @@ class Connection extends AbstractDataSourceConnection {
     }
 }
 
-Object.assign(Connection.prototype, PollDataSourceConnection.prototype);
-
-export default Connection;
+export default CallbackDataSourceConnection;

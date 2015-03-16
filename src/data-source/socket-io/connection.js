@@ -2,7 +2,7 @@ import _ from 'lodash';
 import io from 'socket.io-client';
 import UrlDataSourceConnection from '../url/connection';
 
-export default class Connection extends UrlDataSourceConnection {
+export default class SocketIoDataSourceConnection extends UrlDataSourceConnection {
     startConnection() {
         this.socket = io(this.url);
         // TODO: Capture connection errors and dispatch error

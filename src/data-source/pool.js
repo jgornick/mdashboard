@@ -19,6 +19,8 @@ export default class DataSourcePool extends Marionette.Object {
      *
      * @param {DataSource} dataSource
      *
+     * @return {DataSource} Returns the provided data source for chaining.
+     *
      * @fires DataSourcePool#add
      *
      * @throws {Error} If data source instance with the same key is already registered.
@@ -30,6 +32,7 @@ export default class DataSourcePool extends Marionette.Object {
 
         // Setup the data source connection either from an existing connection, or create a new one.
         if (dataSource.connection == null) {
+            debugger;
             var
                 connection = this.getConnection(dataSource.connectionId);
 
@@ -52,6 +55,8 @@ export default class DataSourcePool extends Marionette.Object {
          * @type {DataSource} dataSource
          */
         this.trigger('add', dataSource);
+
+        return dataSource;
     }
 
     /**
