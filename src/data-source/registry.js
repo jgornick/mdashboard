@@ -37,12 +37,7 @@ export default class DataSourceRegistry extends Marionette.Object {
      * @return {DataSource}
      */
     get(key) {
-        return _.find(
-            this.dataSources,
-            function(DataSource) {
-                return DataSource.meta.key == key;
-            }
-        );
+        return _.find(this.dataSources, { meta: { key: key } });
     }
 
     /**
@@ -51,11 +46,6 @@ export default class DataSourceRegistry extends Marionette.Object {
      * @return {Array} Returns an array of DataSource.meta objects.
      */
     list() {
-        return _.map(
-            this.dataSources,
-            function(DataSource) {
-                return DataSource.meta;
-            }
-        );
+        return _.map(this.dataSources, 'meta');
     }
 }

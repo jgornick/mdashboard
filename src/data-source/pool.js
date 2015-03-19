@@ -32,7 +32,6 @@ export default class DataSourcePool extends Marionette.Object {
 
         // Setup the data source connection either from an existing connection, or create a new one.
         if (dataSource.connection == null) {
-            debugger;
             var
                 connection = this.getConnection(dataSource.connectionId);
 
@@ -67,12 +66,7 @@ export default class DataSourcePool extends Marionette.Object {
      * @return {DataSource}
      */
     get(key) {
-        return _.find(
-            this.dataSources,
-            function(dataSource) {
-                return dataSource.key == key;
-            }
-        );
+        return _.find(this.dataSources, { key: key });
     }
 
     /**
